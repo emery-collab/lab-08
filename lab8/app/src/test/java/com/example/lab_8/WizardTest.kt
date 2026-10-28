@@ -47,4 +47,28 @@ class WizardTest {
         assertEquals(70, evilWizard.mana)
     }
 
+    @Test
+    fun train_sufficientManaForTraining_spellPowerIncreasesCorrectly() {
+        // first set the values for mana and spellPower so we can test correctly
+        evilWizard.mana = 5
+        evilWizard.spellPower = 1
+
+        evilWizard.train() // mana greater than 5, so spellPower should increase by 1, mana goes down by 5
+
+        assertEquals(0, evilWizard.mana)
+        assertEquals(2, evilWizard.spellPower)
+    }
+
+    @Test
+    fun train_insufficientManaForTraining_spellPowerUnaffected() {
+        // again, set the mana and spellPower first to guarantee the results
+        evilWizard.mana = 4
+        evilWizard.spellPower = 1
+
+        evilWizard.train() // mana less than 5, so spellPower and mana shouldn't change
+
+        assertEquals(4, evilWizard.mana)
+        assertEquals(1, evilWizard.spellPower)
+    }
+
 }
